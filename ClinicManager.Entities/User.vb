@@ -6,4 +6,10 @@
     Public Property Identifier As String
     Public Property Phone As String
     Public Property Sex As Integer
+
+    Public ReadOnly Property FullName As String
+        Get
+            Return (FirstName & " " & LastName).Trim()
+        End Get
+    End Property
 End Class

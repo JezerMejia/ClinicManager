@@ -23,7 +23,7 @@ Partial Class Login
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         GroupBox1 = New GroupBox()
-        txtUser = New TextBox()
+        txtEmail = New TextBox()
         GroupBox2 = New GroupBox()
         txtPassword = New TextBox()
         btnLogin = New Button()
@@ -33,21 +33,21 @@ Partial Class Login
         ' 
         ' GroupBox1
         ' 
-        GroupBox1.Controls.Add(txtUser)
+        GroupBox1.Controls.Add(txtEmail)
         GroupBox1.Location = New Point(12, 12)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Size = New Size(245, 47)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
-        GroupBox1.Text = "Usuario"
+        GroupBox1.Text = "Correo"
         ' 
-        ' txtUser
+        ' txtEmail
         ' 
-        txtUser.Dock = DockStyle.Fill
-        txtUser.Location = New Point(3, 19)
-        txtUser.Name = "txtUser"
-        txtUser.Size = New Size(239, 23)
-        txtUser.TabIndex = 0
+        txtEmail.Dock = DockStyle.Fill
+        txtEmail.Location = New Point(3, 19)
+        txtEmail.Name = "txtEmail"
+        txtEmail.Size = New Size(239, 23)
+        txtEmail.TabIndex = 0
         ' 
         ' GroupBox2
         ' 
@@ -96,7 +96,7 @@ Partial Class Login
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents txtUser As TextBox
+    Friend WithEvents txtEmail As TextBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents btnLogin As Button

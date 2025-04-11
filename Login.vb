@@ -1,19 +1,28 @@
-﻿Public Class Login
-    Public Property loggedInUser = Nothing
+﻿Imports ClinicManager.Entities
+
+Public Class Login
+    Public Property loggedInUser As RegisteredUser = Nothing
     Private Sub executeLogin()
-        Dim user As String = Me.txtUser.Text
+        Dim email As String = Me.txtEmail.Text
         Dim password As String = Me.txtPassword.Text
 
-        If user <> "admin" Or password <> "Usuario123." Then
+        Dim foundUser As RegisteredUser
+
+        Using db As New AppDbContext()
+            ' No hay seguridad acá
+            foundUser = db.RegisteredUsers.Where(Function(u) u.Email = email And u.Password = password).FirstOrDefault
+        End Using
+
+        If foundUser Is Nothing Then
             MsgBox("Credenciales incorrectas", MsgBoxStyle.OkOnly, "Error de inicio de sesión")
             Return
         End If
 
-        Me.txtUser.Clear()
+        Me.txtEmail.Clear()
         Me.txtPassword.Clear()
 
         Me.DialogResult = DialogResult.OK
-        Me.loggedInUser = user
+        Me.loggedInUser = foundUser
         Me.Close()
     End Sub
 
