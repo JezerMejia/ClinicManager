@@ -91,12 +91,7 @@ namespace ClinicManager.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MedicId")
-                        .HasColumnType("int");
-
                     b.HasKey("Name");
-
-                    b.HasIndex("MedicId");
 
                     b.ToTable("Specialties");
                 });
@@ -139,6 +134,21 @@ namespace ClinicManager.Data.Migrations
                     b.HasDiscriminator().HasValue("User");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("MedicSpecialty", b =>
+                {
+                    b.Property<int>("MedicsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpecialtiesName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("MedicsId", "SpecialtiesName");
+
+                    b.HasIndex("SpecialtiesName");
+
+                    b.ToTable("MedicSpecialty");
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.Patient", b =>
@@ -201,13 +211,19 @@ namespace ClinicManager.Data.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("ClinicManager.Entities.Specialty", b =>
+            modelBuilder.Entity("MedicSpecialty", b =>
                 {
-                    b.HasOne("ClinicManager.Entities.Medic", "Medic")
-                        .WithMany("Specialties")
-                        .HasForeignKey("MedicId");
+                    b.HasOne("ClinicManager.Entities.Medic", null)
+                        .WithMany()
+                        .HasForeignKey("MedicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Medic");
+                    b.HasOne("ClinicManager.Entities.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtiesName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.Patient", b =>
@@ -220,8 +236,6 @@ namespace ClinicManager.Data.Migrations
             modelBuilder.Entity("ClinicManager.Entities.Medic", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("Specialties");
                 });
 #pragma warning restore 612, 618
         }

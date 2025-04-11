@@ -12,6 +12,18 @@ namespace ClinicManager.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Specialties",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Specialties", x => x.Name);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -83,21 +95,27 @@ namespace ClinicManager.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Specialties",
+                name: "MedicSpecialty",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MedicId = table.Column<int>(type: "int", nullable: true)
+                    MedicsId = table.Column<int>(type: "int", nullable: false),
+                    SpecialtiesName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specialties", x => x.Name);
+                    table.PrimaryKey("PK_MedicSpecialty", x => new { x.MedicsId, x.SpecialtiesName });
                     table.ForeignKey(
-                        name: "FK_Specialties_Users_MedicId",
-                        column: x => x.MedicId,
+                        name: "FK_MedicSpecialty_Specialties_SpecialtiesName",
+                        column: x => x.SpecialtiesName,
+                        principalTable: "Specialties",
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MedicSpecialty_Users_MedicsId",
+                        column: x => x.MedicsId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -116,9 +134,9 @@ namespace ClinicManager.Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Specialties_MedicId",
-                table: "Specialties",
-                column: "MedicId");
+                name: "IX_MedicSpecialty_SpecialtiesName",
+                table: "MedicSpecialty",
+                column: "SpecialtiesName");
         }
 
         /// <inheritdoc />
@@ -129,6 +147,9 @@ namespace ClinicManager.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "MedicalRecords");
+
+            migrationBuilder.DropTable(
+                name: "MedicSpecialty");
 
             migrationBuilder.DropTable(
                 name: "Specialties");

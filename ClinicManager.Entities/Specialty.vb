@@ -5,5 +5,5 @@ Public Class Specialty
     Public Property Name As String
     Public Property Description As String
 
-    Public Overridable Property Medic As Medic
+    Public Overridable Property Medics As List(Of Medic)
 End Class
