@@ -24,6 +24,11 @@ Public Class Form1
 
         If TypeOf Me.loggedInUser Is Medic Then
             Me.AppointmentsTable1.currentMedic = loggedInUser
+
+            Me.MedicsTab.Hide()
+        ElseIf TypeOf Me.loggedInUser Is Admin Then
+            Me.AppointmentsTab.Hide()
+            Me.PatientsTab.Hide()
         End If
     End Sub
 

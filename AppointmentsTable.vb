@@ -22,6 +22,7 @@ Public Class AppointmentsTable
         Using db As New AppDbContext()
             Me.bindingList = New BindingList(Of Appointment)(
                 db.Appointments.
+                Where(Function(a) a.MedicId = Me.currentMedic.Id). ' Limit to current Medic
                 Include(Function(a) a.Medic).
                 Include(Function(a) a.Patient).
                 ToList())

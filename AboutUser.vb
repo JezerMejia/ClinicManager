@@ -25,11 +25,9 @@ Sexo: {user.SexName}
                 db.Entry(medic).Collection(Function(m) m.Specialties).Load()
             End Using
 
-            Dim specialties = String.Join(", ", medic.Specialties.Select(Function(s) s.Description))
-
             information += $"
 Tipo: Médico
-Especialidades: {specialties}
+Especialidades: {medic.SpecialtiesString}
 "
         End If
 

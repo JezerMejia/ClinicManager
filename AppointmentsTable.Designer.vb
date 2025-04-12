@@ -24,12 +24,6 @@ Partial Class AppointmentsTable
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         DataGridView1 = New DataGridView()
-        IdDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
-        Description = New DataGridViewTextBoxColumn()
-        AttendAt = New DataGridViewTextBoxColumn()
-        PatientName = New DataGridViewTextBoxColumn()
-        MedicName = New DataGridViewTextBoxColumn()
-        CreatedAt = New DataGridViewTextBoxColumn()
         AppointmentBindingSource = New BindingSource(components)
         Panel1 = New Panel()
         TextBox1 = New TextBox()
@@ -38,6 +32,12 @@ Partial Class AppointmentsTable
         lbCount = New Label()
         btnDelete = New Button()
         btnEdit = New Button()
+        IdDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        Description = New DataGridViewTextBoxColumn()
+        AttendAt = New DataGridViewTextBoxColumn()
+        PatientName = New DataGridViewTextBoxColumn()
+        MedicName = New DataGridViewTextBoxColumn()
+        CreatedAt = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(AppointmentBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -58,48 +58,6 @@ Partial Class AppointmentsTable
         DataGridView1.ReadOnly = True
         DataGridView1.Size = New Size(684, 251)
         DataGridView1.TabIndex = 0
-        ' 
-        ' IdDataGridViewTextBoxColumn
-        ' 
-        IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-        IdDataGridViewTextBoxColumn.HeaderText = "ID"
-        IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        IdDataGridViewTextBoxColumn.ReadOnly = True
-        ' 
-        ' Description
-        ' 
-        Description.DataPropertyName = "Description"
-        Description.HeaderText = "Descripción"
-        Description.Name = "Description"
-        Description.ReadOnly = True
-        ' 
-        ' AttendAt
-        ' 
-        AttendAt.DataPropertyName = "AttendAt"
-        AttendAt.HeaderText = "Fecha"
-        AttendAt.Name = "AttendAt"
-        AttendAt.ReadOnly = True
-        ' 
-        ' PatientName
-        ' 
-        PatientName.DataPropertyName = "PatientName"
-        PatientName.HeaderText = "Paciente"
-        PatientName.Name = "PatientName"
-        PatientName.ReadOnly = True
-        ' 
-        ' MedicName
-        ' 
-        MedicName.DataPropertyName = "MedicName"
-        MedicName.HeaderText = "Médico"
-        MedicName.Name = "MedicName"
-        MedicName.ReadOnly = True
-        ' 
-        ' CreatedAt
-        ' 
-        CreatedAt.DataPropertyName = "CreatedAt"
-        CreatedAt.HeaderText = "Fecha de Creación"
-        CreatedAt.Name = "CreatedAt"
-        CreatedAt.ReadOnly = True
         ' 
         ' AppointmentBindingSource
         ' 
@@ -178,6 +136,49 @@ Partial Class AppointmentsTable
         btnEdit.Text = "Editar"
         btnEdit.UseVisualStyleBackColor = True
         ' 
+        ' IdDataGridViewTextBoxColumn
+        ' 
+        IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        IdDataGridViewTextBoxColumn.HeaderText = "ID"
+        IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        IdDataGridViewTextBoxColumn.ReadOnly = True
+        ' 
+        ' Description
+        ' 
+        Description.DataPropertyName = "Description"
+        Description.HeaderText = "Descripción"
+        Description.Name = "Description"
+        Description.ReadOnly = True
+        ' 
+        ' AttendAt
+        ' 
+        AttendAt.DataPropertyName = "AttendAt"
+        AttendAt.HeaderText = "Fecha"
+        AttendAt.Name = "AttendAt"
+        AttendAt.ReadOnly = True
+        ' 
+        ' PatientName
+        ' 
+        PatientName.DataPropertyName = "PatientName"
+        PatientName.HeaderText = "Paciente"
+        PatientName.Name = "PatientName"
+        PatientName.ReadOnly = True
+        ' 
+        ' MedicName
+        ' 
+        MedicName.DataPropertyName = "MedicName"
+        MedicName.HeaderText = "Médico"
+        MedicName.Name = "MedicName"
+        MedicName.ReadOnly = True
+        ' 
+        ' CreatedAt
+        ' 
+        CreatedAt.DataPropertyName = "CreatedAt"
+        CreatedAt.HeaderText = "Fecha de Creación"
+        CreatedAt.Name = "CreatedAt"
+        CreatedAt.ReadOnly = True
+        CreatedAt.Width = 150
+        ' 
         ' AppointmentsTable
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -201,15 +202,15 @@ Partial Class AppointmentsTable
     Friend WithEvents btnNewAppointment As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents AppointmentBindingSource As BindingSource
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnEdit As Button
+    Friend WithEvents lbCount As Label
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Description As DataGridViewTextBoxColumn
     Friend WithEvents AttendAt As DataGridViewTextBoxColumn
     Friend WithEvents PatientName As DataGridViewTextBoxColumn
     Friend WithEvents MedicName As DataGridViewTextBoxColumn
     Friend WithEvents CreatedAt As DataGridViewTextBoxColumn
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents btnEdit As Button
-    Friend WithEvents lbCount As Label
 
 End Class

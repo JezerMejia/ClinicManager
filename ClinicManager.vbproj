@@ -52,7 +52,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Update="PatientsTable - Copy.vb" />
+    <Compile Update="MedicsTable.vb" />
     <Compile Update="Patients\EditMedicalRecord.vb" />
     <Compile Update="Patients\EditPatient.vb" />
   </ItemGroup>

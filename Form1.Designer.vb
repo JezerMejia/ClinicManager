@@ -23,23 +23,27 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         TabControl1 = New TabControl()
-        TabPage1 = New TabPage()
+        PatientsTab = New TabPage()
         PatientsTable1 = New PatientsTable()
-        TabPage2 = New TabPage()
+        AppointmentsTab = New TabPage()
         AppointmentsTable1 = New AppointmentsTable()
-        TabPage3 = New TabPage()
+        MedicsTab = New TabPage()
+        AboutTab = New TabPage()
         AboutUser1 = New AboutUser()
+        MedicsTable1 = New MedicsTable()
         TabControl1.SuspendLayout()
-        TabPage1.SuspendLayout()
-        TabPage2.SuspendLayout()
-        TabPage3.SuspendLayout()
+        PatientsTab.SuspendLayout()
+        AppointmentsTab.SuspendLayout()
+        MedicsTab.SuspendLayout()
+        AboutTab.SuspendLayout()
         SuspendLayout()
         ' 
         ' TabControl1
         ' 
-        TabControl1.Controls.Add(TabPage1)
-        TabControl1.Controls.Add(TabPage2)
-        TabControl1.Controls.Add(TabPage3)
+        TabControl1.Controls.Add(PatientsTab)
+        TabControl1.Controls.Add(AppointmentsTab)
+        TabControl1.Controls.Add(MedicsTab)
+        TabControl1.Controls.Add(AboutTab)
         TabControl1.Dock = DockStyle.Fill
         TabControl1.Location = New Point(0, 0)
         TabControl1.Name = "TabControl1"
@@ -47,16 +51,16 @@ Partial Class Form1
         TabControl1.Size = New Size(800, 450)
         TabControl1.TabIndex = 0
         ' 
-        ' TabPage1
+        ' PatientsTab
         ' 
-        TabPage1.Controls.Add(PatientsTable1)
-        TabPage1.Location = New Point(4, 24)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(792, 422)
-        TabPage1.TabIndex = 0
-        TabPage1.Text = "Pacientes"
-        TabPage1.UseVisualStyleBackColor = True
+        PatientsTab.Controls.Add(PatientsTable1)
+        PatientsTab.Location = New Point(4, 24)
+        PatientsTab.Name = "PatientsTab"
+        PatientsTab.Padding = New Padding(3)
+        PatientsTab.Size = New Size(792, 422)
+        PatientsTab.TabIndex = 0
+        PatientsTab.Text = "Pacientes"
+        PatientsTab.UseVisualStyleBackColor = True
         ' 
         ' PatientsTable1
         ' 
@@ -66,16 +70,16 @@ Partial Class Form1
         PatientsTable1.Size = New Size(786, 416)
         PatientsTable1.TabIndex = 0
         ' 
-        ' TabPage2
+        ' AppointmentsTab
         ' 
-        TabPage2.Controls.Add(AppointmentsTable1)
-        TabPage2.Location = New Point(4, 24)
-        TabPage2.Name = "TabPage2"
-        TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(792, 422)
-        TabPage2.TabIndex = 1
-        TabPage2.Text = "Citas Médicas"
-        TabPage2.UseVisualStyleBackColor = True
+        AppointmentsTab.Controls.Add(AppointmentsTable1)
+        AppointmentsTab.Location = New Point(4, 24)
+        AppointmentsTab.Name = "AppointmentsTab"
+        AppointmentsTab.Padding = New Padding(3)
+        AppointmentsTab.Size = New Size(792, 422)
+        AppointmentsTab.TabIndex = 1
+        AppointmentsTab.Text = "Citas Médicas"
+        AppointmentsTab.UseVisualStyleBackColor = True
         ' 
         ' AppointmentsTable1
         ' 
@@ -86,16 +90,27 @@ Partial Class Form1
         AppointmentsTable1.Size = New Size(786, 416)
         AppointmentsTable1.TabIndex = 0
         ' 
-        ' TabPage3
+        ' MedicsTab
         ' 
-        TabPage3.Controls.Add(AboutUser1)
-        TabPage3.Location = New Point(4, 24)
-        TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(792, 422)
-        TabPage3.TabIndex = 2
-        TabPage3.Text = "Sobre mí"
-        TabPage3.UseVisualStyleBackColor = True
+        MedicsTab.Controls.Add(MedicsTable1)
+        MedicsTab.Location = New Point(4, 24)
+        MedicsTab.Name = "MedicsTab"
+        MedicsTab.Padding = New Padding(3)
+        MedicsTab.Size = New Size(792, 422)
+        MedicsTab.TabIndex = 3
+        MedicsTab.Text = "Médicos"
+        MedicsTab.UseVisualStyleBackColor = True
+        ' 
+        ' AboutTab
+        ' 
+        AboutTab.Controls.Add(AboutUser1)
+        AboutTab.Location = New Point(4, 24)
+        AboutTab.Name = "AboutTab"
+        AboutTab.Padding = New Padding(3)
+        AboutTab.Size = New Size(792, 422)
+        AboutTab.TabIndex = 2
+        AboutTab.Text = "Sobre mí"
+        AboutTab.UseVisualStyleBackColor = True
         ' 
         ' AboutUser1
         ' 
@@ -106,6 +121,14 @@ Partial Class Form1
         AboutUser1.TabIndex = 0
         AboutUser1.user = Nothing
         ' 
+        ' MedicsTable1
+        ' 
+        MedicsTable1.Dock = DockStyle.Fill
+        MedicsTable1.Location = New Point(3, 3)
+        MedicsTable1.Name = "MedicsTable1"
+        MedicsTable1.Size = New Size(786, 416)
+        MedicsTable1.TabIndex = 0
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -115,18 +138,21 @@ Partial Class Form1
         Name = "Form1"
         Text = "ClinicManager"
         TabControl1.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
-        TabPage2.ResumeLayout(False)
-        TabPage3.ResumeLayout(False)
+        PatientsTab.ResumeLayout(False)
+        AppointmentsTab.ResumeLayout(False)
+        MedicsTab.ResumeLayout(False)
+        AboutTab.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents PatientsTab As TabPage
+    Friend WithEvents AppointmentsTab As TabPage
     Friend WithEvents PatientsTable1 As PatientsTable
     Friend WithEvents AppointmentsTable1 As AppointmentsTable
-    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents AboutTab As TabPage
     Friend WithEvents AboutUser1 As AboutUser
+    Friend WithEvents MedicsTab As TabPage
+    Friend WithEvents MedicsTable1 As MedicsTable
 
 End Class
