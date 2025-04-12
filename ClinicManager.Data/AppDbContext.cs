@@ -61,6 +61,26 @@ public class AppDbContext : DbContext
             }
         );
 
+
+        modelBuilder.Entity<Admin>().HasData(
+            new Admin {
+                Id = 99, FirstName = "Admin", LastName = "Master",
+                Email = "admin.master@gmail.com", Password = "Usuario123.",
+                Identifier = "0000000000000Z", Phone = "99999999", Sex = 1
+            }
+        );
+
+        modelBuilder.Entity<Appointment>()
+            .HasOne(a => a.Patient)
+            .WithMany()
+            .HasForeignKey(a => a.PatientId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Appointment>()
+            .HasOne(a => a.Medic)
+            .WithMany()
+            .HasForeignKey(a => a.MedicId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

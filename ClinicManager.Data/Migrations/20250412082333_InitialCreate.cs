@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ClinicManager.Data.Migrations
 {
     /// <inheritdoc />
@@ -55,8 +57,10 @@ namespace ClinicManager.Data.Migrations
                     AttendAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Prescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Diagnostic = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PatientId = table.Column<int>(type: "int", nullable: true),
-                    MedicId = table.Column<int>(type: "int", nullable: true)
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    MedicId = table.Column<int>(type: "int", nullable: false),
+                    MedicId1 = table.Column<int>(type: "int", nullable: true),
+                    PatientId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,10 +69,22 @@ namespace ClinicManager.Data.Migrations
                         name: "FK_Appointments_Users_MedicId",
                         column: x => x.MedicId,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Users_MedicId1",
+                        column: x => x.MedicId1,
+                        principalTable: "Users",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Appointments_Users_PatientId",
                         column: x => x.PatientId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Users_PatientId1",
+                        column: x => x.PatientId1,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -118,15 +134,66 @@ namespace ClinicManager.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Specialties",
+                columns: new[] { "Name", "Description" },
+                values: new object[,]
+                {
+                    { "derma", "Dermatología" },
+                    { "general", "Médico General" },
+                    { "odonto", "Odontología" },
+                    { "oftalmo", "Oftalmología" },
+                    { "pediatria", "Pediatría" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Discriminator", "Email", "FirstName", "Identifier", "LastName", "Password", "Phone", "Sex" },
+                values: new object[,]
+                {
+                    { 1, "Medic", "juan.perez@gmail.com", "Juan", "0010101010001A", "Pérez", "Usuario123.", "12121212", 1 },
+                    { 2, "Medic", "maria.hernandez@gmail.com", "María", "0010101010001B", "Hernández", "Usuario123.", "14141414", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Birthday", "Discriminator", "Email", "FirstName", "Identifier", "LastName", "Phone", "Sex" },
+                values: new object[] { 3, new DateTime(2003, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Patient", "jezer.mejia@gmail.com", "Jezer", "2010511031000Y", "Mejía", "81211855", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Discriminator", "Email", "FirstName", "Identifier", "LastName", "Password", "Phone", "Sex" },
+                values: new object[] { 99, "Admin", "admin.master@gmail.com", "Admin", "0000000000000Z", "Master", "Usuario123.", "99999999", 1 });
+
+            migrationBuilder.InsertData(
+                table: "MedicSpecialty",
+                columns: new[] { "MedicsId", "SpecialtiesName" },
+                values: new object[,]
+                {
+                    { 1, "general" },
+                    { 1, "odonto" },
+                    { 2, "derma" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_MedicId",
                 table: "Appointments",
                 column: "MedicId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Appointments_MedicId1",
+                table: "Appointments",
+                column: "MedicId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Appointments_PatientId",
                 table: "Appointments",
                 column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_PatientId1",
+                table: "Appointments",
+                column: "PatientId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MedicalRecords_PatientId",

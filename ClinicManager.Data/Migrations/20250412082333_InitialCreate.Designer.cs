@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicManager.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250411180150_SeedData")]
-    partial class SeedData
+    [Migration("20250412082333_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,10 +44,16 @@ namespace ClinicManager.Data.Migrations
                     b.Property<string>("Diagnostic")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MedicId")
+                    b.Property<int>("MedicId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int?>("MedicId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PatientId1")
                         .HasColumnType("int");
 
                     b.Property<string>("Prescription")
@@ -57,7 +63,11 @@ namespace ClinicManager.Data.Migrations
 
                     b.HasIndex("MedicId");
 
+                    b.HasIndex("MedicId1");
+
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("PatientId1");
 
                     b.ToTable("Appointments");
                 });
@@ -236,6 +246,19 @@ namespace ClinicManager.Data.Migrations
                     b.HasBaseType("ClinicManager.Entities.RegisteredUser");
 
                     b.HasDiscriminator().HasValue("Admin");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 99,
+                            Email = "admin.master@gmail.com",
+                            FirstName = "Admin",
+                            Identifier = "0000000000000Z",
+                            LastName = "Master",
+                            Phone = "99999999",
+                            Sex = 1,
+                            Password = "Usuario123."
+                        });
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.Medic", b =>
@@ -272,12 +295,24 @@ namespace ClinicManager.Data.Migrations
             modelBuilder.Entity("ClinicManager.Entities.Appointment", b =>
                 {
                     b.HasOne("ClinicManager.Entities.Medic", "Medic")
+                        .WithMany()
+                        .HasForeignKey("MedicId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ClinicManager.Entities.Medic", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("MedicId");
+                        .HasForeignKey("MedicId1");
 
                     b.HasOne("ClinicManager.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ClinicManager.Entities.Patient", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId1");
 
                     b.Navigation("Medic");
 
