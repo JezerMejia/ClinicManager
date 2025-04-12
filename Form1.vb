@@ -12,9 +12,18 @@ Public Class Form1
         End If
 
         If result = True Then
+            Me.InitStuff()
             Me.Show()
         Else
             Me.Close()
+        End If
+    End Sub
+
+    Private Sub InitStuff()
+        Me.AboutUser1.user = Me.loggedInUser
+
+        If TypeOf Me.loggedInUser Is Medic Then
+            Me.AppointmentsTable1.currentMedic = loggedInUser
         End If
     End Sub
 

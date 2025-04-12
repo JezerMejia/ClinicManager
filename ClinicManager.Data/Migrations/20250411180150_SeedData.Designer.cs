@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicManager.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250411160402_SeedData")]
+    [Migration("20250411180150_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -97,6 +97,33 @@ namespace ClinicManager.Data.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Specialties");
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "general",
+                            Description = "Médico General"
+                        },
+                        new
+                        {
+                            Name = "pediatria",
+                            Description = "Pediatría"
+                        },
+                        new
+                        {
+                            Name = "derma",
+                            Description = "Dermatología"
+                        },
+                        new
+                        {
+                            Name = "odonto",
+                            Description = "Odontología"
+                        },
+                        new
+                        {
+                            Name = "oftalmo",
+                            Description = "Oftalmología"
+                        });
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.User", b =>
@@ -152,6 +179,23 @@ namespace ClinicManager.Data.Migrations
                     b.HasIndex("SpecialtiesName");
 
                     b.ToTable("MedicSpecialty");
+
+                    b.HasData(
+                        new
+                        {
+                            MedicsId = 1,
+                            SpecialtiesName = "general"
+                        },
+                        new
+                        {
+                            MedicsId = 1,
+                            SpecialtiesName = "odonto"
+                        },
+                        new
+                        {
+                            MedicsId = 2,
+                            SpecialtiesName = "derma"
+                        });
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.Patient", b =>
@@ -162,6 +206,19 @@ namespace ClinicManager.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasDiscriminator().HasValue("Patient");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Email = "jezer.mejia@gmail.com",
+                            FirstName = "Jezer",
+                            Identifier = "2010511031000Y",
+                            LastName = "Mejía",
+                            Phone = "81211855",
+                            Sex = 1,
+                            Birthday = new DateTime(2003, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("ClinicManager.Entities.RegisteredUser", b =>
@@ -195,7 +252,7 @@ namespace ClinicManager.Data.Migrations
                             FirstName = "Juan",
                             Identifier = "0010101010001A",
                             LastName = "Pérez",
-                            Phone = "81211855",
+                            Phone = "12121212",
                             Sex = 1,
                             Password = "Usuario123."
                         },
@@ -206,7 +263,7 @@ namespace ClinicManager.Data.Migrations
                             FirstName = "María",
                             Identifier = "0010101010001B",
                             LastName = "Hernández",
-                            Phone = "12121212",
+                            Phone = "14141414",
                             Sex = 0,
                             Password = "Usuario123."
                         });
