@@ -8,6 +8,10 @@ Public Class EditPatient
     Private Sub NewPatient_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.dtpBirthday.MaxDate = Date.Now
 
+        AddHandler Me.txtIdentifier.KeyPress, Validator.limit_length_with(14)
+        AddHandler Me.txtPhone.KeyPress, Validator.limit_length_with(8)
+        AddHandler Me.txtPhone.KeyPress, AddressOf Validator.only_integer
+
         Me.ResetData()
     End Sub
 
@@ -41,6 +45,11 @@ Public Class EditPatient
 
         If Validator.strings_are_empty(FirstName, LastName, Email, Phone, Identifier, SexText) Then
             MsgBox("Ingresa los campos del formulario", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+            Return
+        End If
+
+        If Not Validator.is_email(Email) Then
+            MsgBox("El correo ingresado no es válido", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
             Return
         End If
 
